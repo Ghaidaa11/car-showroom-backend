@@ -17,6 +17,6 @@ public class UserService {
     }
 
     public List<UserResponseDto> getManagers() {
-        return userRepo.findByRole(UserRoles.Manager);
+        return userRepo.findByRole(UserRoles.MANAGER);
     }
 }

@@ -10,7 +10,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class User extends BaseProperties {
@@ -28,4 +27,13 @@ public class User extends BaseProperties {
     @Enumerated(EnumType.STRING)
     private UserRoles role;
 
+    private String password;
+
+    public User(String firstName, String lastName, String phone, UserRoles role, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.role = role;
+        this.password = password;
+    }
 }
