@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -24,6 +26,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleEntityNotFound(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<Object> handleBadRequest(BadRequestException ex) {
+        Map<String, Object> errorBody = new HashMap<>();
+        errorBody.put("error", "Bad Request");
+        errorBody.put("message", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(errorBody);
     }
 
 }

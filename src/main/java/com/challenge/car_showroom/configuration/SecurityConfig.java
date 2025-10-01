@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers( "/login").permitAll()
+                                .requestMatchers( "/login", "/error").permitAll()
                                 .requestMatchers("/api/v1/car-showroom/create").hasRole("MANAGER")
                                 .anyRequest().authenticated())
                 .sessionManagement(session -> session
